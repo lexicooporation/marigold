@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['marigold-id1k.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['marigold-8xdf.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
