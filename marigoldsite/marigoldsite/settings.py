@@ -142,8 +142,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 #── Cloudinary ────────────────────────────────────────────────
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 cloudinary.config(
     cloudinary_url=os.getenv('CLOUDINARY_URL')
