@@ -197,16 +197,16 @@ JAZZMIN_SETTINGS = {
     "default_icon_children": "fas fa-circle",
 
      # ── Layout ────────────────────────────────────────────────
-    "custom_css":              'css/admin_custom.css',
-    "custom_js":               None,
+    "custom_css": 'css/admin_custom.css',
+    "custom_js": "js/admin_custom.js",
     "use_google_fonts_cdn":    True,
     "show_ui_builder":         False,
 
 }
 JAZZMIN_UI_TWEAKS = {
-    "theme": "sandstone",    
-    "dark_mode_theme": None,
+    "theme": "sandstone",
+    "dark_mode_theme": None,        
     "navbar_fixed":    True,
     "sidebar_fixed":   True,
-    "sidebar":         "sidebar-light-primary",
+    "sidebar": "sidebar-light-primary",
 }

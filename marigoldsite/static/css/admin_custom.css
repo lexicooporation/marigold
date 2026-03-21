@@ -376,3 +376,16 @@
     .mg-stat-number { font-size: 1.4rem; }
     .mg-stat-card { padding: 12px; }
   }
+
+/* Force light mode — ignore OS dark preference */
+[data-theme="dark"],
+[data-bs-theme="dark"] {
+    filter: none !important;
+}
+
+.main-sidebar,
+.main-header,
+.content-wrapper,
+body {
+    color-scheme: light only !important;
+}
