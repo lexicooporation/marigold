@@ -1,0 +1,21 @@
+
+{% if messages %}
+  <div class="messages-wrap mb-4">
+    {% for message in messages %}
+      <div class="alert alert-marigold alert-dismissible fade show d-flex align-items-start gap-3
+        {% if message.tags == 'success' %}alert-success-marigold
+        {% elif message.tags == 'error' %}alert-error-marigold
+        {% elif message.tags == 'warning' %}alert-warning-marigold
+        {% else %}alert-info-marigold{% endif %}" role="alert">
+        <span style="font-size:1.2rem;">
+          {% if message.tags == 'success' %}✅
+          {% elif message.tags == 'error' %}❌
+          {% elif message.tags == 'warning' %}⚠️
+          {% else %}💬{% endif %}
+        </span>
+        <div>{{ message }}</div>
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

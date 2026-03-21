@@ -1,0 +1,1 @@
+web: gunicorn marigoldsite.wsgi:application

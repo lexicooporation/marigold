@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <!-- ══ PAGE HERO ══ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 fade-up">
+          <span class="section-label">Our Story</span>
+          <h1 class="fw-bold mb-3">Made by hand,<br>poured with purpose</h1>
+          <p class="text-muted-warm lead-sm" style="font-size:16px;">
+            A little about the woman behind every candle, and why she started Marigold & Co.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STORY SECTION ══ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 scroll-fade">
+          <div class="about-img-placeholder">
+            <img src="{% static 'img/marigold6.jpg' %}" alt="" class="about-img">
+          </div>
+        </div>
+        <div class="col-lg-7 scroll-fade">
+          <span class="section-label">Hi, I'm Sandra</span>
+          <h2 class="fw-bold mb-4">From kitchen experiments to a real business</h2>
+          <p class="text-muted-warm mb-3">
+            It started on a cold November evening in 2021. My kitchen smelled like a spa gone wrong, and I had wax on my ceiling. But the candle I'd made — an amber and cedarwood blend I'd been tweaking for weeks — was <em>perfect</em>.
+          </p>
+          <p class="text-muted-warm mb-3">
+            I'd been making candles as gifts for years, but that night something clicked. My friends kept asking where to buy them. My Etsy shop opened quietly the following January, and by March I'd sold out three times.
+          </p>
+          <p class="text-muted-warm mb-4">
+            Three years later, Marigold & Co. is still me — still handpoured, still small-batch, still made at my studio table in Austin. Just with a lot less wax on the ceiling.
+          </p>
+          <a href="{% url 'contact' %}" class="btn btn-amber">Say hello →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <section class="section-pad-sm bg-cream-dark">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="stat-box">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years in Business</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="stat-box">
+            <div class="stat-num">1.2k+</div>
+            <div class="stat-label">Orders Shipped</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="stat-box">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Scents Created</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="stat-box">
+            <div class="stat-num">★ 4.9</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VALUES ══ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 mb-5 mb-lg-0 scroll-fade">
+          <span class="section-label">What I Believe In</span>
+          <h2 class="fw-bold mb-4">The Marigold values</h2>
+          <p class="text-muted-warm">
+            Every decision I make — from the wax I source to the boxes I ship in — comes back to these principles.
+          </p>
+        </div>
+        <div class="col-lg-7 scroll-fade">
+          <div class="value-item">
+            <div class="value-icon"><i class="bi bi-flower1"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1">Natural, always</h5>
+              <p class="text-muted-warm mb-0">I use a soy-coconut wax blend with no paraffin, no synthetic dyes, and only phthalate-free fragrance oils. What you burn in your home should be clean.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon"><i class="bi bi-hand-index-thumb"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1">Handmade, every time</h5>
+              <p class="text-muted-warm mb-0">No machines, no outsourcing. Every candle is poured, labelled, and quality-checked by me. It takes longer, but you can feel the difference.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon"><i class="bi bi-globe"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1">Thoughtfully sustainable</h5>
+              <p class="text-muted-warm mb-0">Recycled card packaging, minimal plastic, and I encourage customers to reuse jars. Not perfect — but always trying to do better.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
+            <div>
+              <h5 class="fw-bold mb-1">Small but personal</h5>
+              <p class="text-muted-warm mb-0">Being small means I can be personal. I reply to every message, I remember returning customers, and I love doing custom orders.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ══ PROCESS ══ -->
+  <section class="section-pad bg-cream-dark">
+    <div class="container">
+      <div class="text-center mb-5 scroll-fade">
+        <span class="section-label">Behind the Scenes</span>
+        <h2 class="fw-bold">How a Marigold candle is made</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-3 text-center scroll-fade">
+          <div class="img-placeholder mx-auto mb-3" style="width:80px;height:80px;border-radius:50%;font-size:2rem;"><i class="bi bi-eyedropper"></i></div>
+          <h6 class="fw-bold">1. Blend & Test</h6>
+          <p class="text-muted-warm small">Each scent goes through weeks of small-batch testing before it's ever listed.</p>
+        </div>
+        <div class="col-md-3 text-center scroll-fade">
+          <div class="img-placeholder mx-auto mb-3" style="width:80px;height:80px;border-radius:50%;font-size:2rem;"><i class="bi bi-thermometer-half"></i></div>
+          <h6 class="fw-bold">2. Melt & Pour</h6>
+          <p class="text-muted-warm small">Wax is melted at the right temperature, fragrance added precisely, then poured slowly.</p>
+        </div>
+        <div class="col-md-3 text-center scroll-fade">
+          <div class="img-placeholder mx-auto mb-3" style="width:80px;height:80px;border-radius:50%;font-size:2rem;"><i class="bi bi-hourglass-split"></i></div>
+          <h6 class="fw-bold">3. Cure</h6>
+          <p class="text-muted-warm small">Candles cure for at least 48 hours for a cleaner, stronger scent throw.</p>
+        </div>
+        <div class="col-md-3 text-center scroll-fade">
+          <div class="img-placeholder mx-auto mb-3" style="width:80px;height:80px;border-radius:50%;font-size:2rem;"><i class="bi bi-box-seam"></i></div>
+          <h6 class="fw-bold">4. Pack & Ship</h6>
+          <p class="text-muted-warm small">Packed in recycled kraft boxes, each candle ships within 2–3 business days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="newsletter-band">
+    <div class="container text-center">
+      <h2 class="mb-3">Ready to find your scent?</h2>
+      <p class="mb-4">Browse the full collection — all available on Etsy with fast shipping.</p>
+      <div class="d-flex justify-content-center flex-wrap">
+      <a href="{% url 'shop' %}" class="btn btn-amber mx-2 mb-2 w-50">Shop the Collection</a>
+      <a href="{% url 'contact' %}" class="btn btn-outline-amber mb-2 w-50">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

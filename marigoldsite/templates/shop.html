@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <!-- ══ PAGE HERO ══ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 fade-up">
+          <span class="section-label">The Collection</span>
+          <h1 class="fw-bold mb-3">Shop all products</h1>
+          <p class="text-muted-warm" style="font-size:16px;">All products link to our Etsy shop for a safe, secure checkout experience.</p>
+        </div>
+        <div class="col-lg-5 text-lg-end fade-up delay-2">
+          <span class="etsy-badge">
+            <i class="bi bi-shop"></i> Available on Etsy
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FILTER BAR ══ -->
+  <section class="bg-cream-dark py-4">
+    <div class="container">
+      <!-- overflow-auto so it scrolls horizontally on small screens instead of wrapping -->
+      <div class="d-flex gap-2 align-items-center overflow-auto pb-1" style="white-space:nowrap;">
+        <span class="text-muted-warm small fw-semibold me-2 flex-shrink-0"
+          style="text-transform:uppercase;letter-spacing:1px;font-size:11px;">Filter:</span>
+        <button class="filter-btn active flex-shrink-0" data-filter="all">All Products</button>
+        <button class="filter-btn flex-shrink-0" data-filter="candles">Candles</button>
+        <button class="filter-btn flex-shrink-0" data-filter="melts">Wax Melts</button>
+        <button class="filter-btn flex-shrink-0" data-filter="gifts">Gift Sets</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRODUCTS GRID ══ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row g-4">
+        {% for product in products %}
+        <!-- col-12 mobile | col-sm-6 tablet (iPad mini/air) | col-lg-4 desktop -->
+        <div class="col-12 col-sm-6 col-lg-4 product-card" data-category="{{ product.category }}">
+          <div class="card-marigold scroll-fade">
+            <img
+              src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/marigold1.jpg' %}{% endif %}"
+              alt="{{ product.name }}"
+              style="width:100%; height:220px; object-fit:cover;">
+            <div class="card-body">
+              <span class="badge mb-2 badge-{{ product.category }}" style="font-size:10px;">
+                {{ product.get_category_display }}
+              </span>
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text mb-2">{{ product.description }}</p>
+              <div class="d-flex align-items-center justify-content-between mt-3">
+                <span class="card-price">${{ product.price }}</span>
+                <a href="{{ product.etsy_url }}" target="_blank" class="btn btn-amber btn-sm">
+                  Buy on Etsy <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+          <div class="col-12 text-center py-5">
+            <p class="text-muted-warm">No products available right now. Check back soon!</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Custom order CTA -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="p-4 p-md-5 rounded-4 scroll-fade"
+            style="background:var(--cream-dark);border:1.5px solid var(--amber-light);">
+            <div class="row align-items-center g-3">
+              <div class="col-md-8">
+                <h4 class="fw-bold mb-1">Need something custom?</h4>
+                <p class="text-muted-warm mb-0">Wedding favours, corporate gifts, branded candles — I love
+                  custom orders. Get in touch and we'll figure it out together.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="{% url 'contact' %}" class="btn btn-amber">
+                  Request Custom Order <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

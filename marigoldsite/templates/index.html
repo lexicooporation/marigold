@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="section-label fade-up">Handcrafted in Austin, TX</span>
+          <h1 class="hero-title fade-up delay-1">
+            Light up your home with <em>intention</em>
+          </h1>
+          <p class="hero-subtitle fade-up delay-2">
+            Small-batch candles and home goods made with natural wax, botanicals, and a whole lot of love. Every product is handpoured and finished by hand.
+          </p>
+          <div class="d-flex flex-wrap gap-3 fade-up delay-3">
+            <a href="{% url 'shop' %}" class="btn btn-amber">Explore the Shop</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-brown">Our Story</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-img-wrap">
+            <div class="img-placeholder hero-img-placeholder" style="height:500px; border-radius: 20px 20px 80px 20px; font-size:5rem;">
+              <img src="{% static 'img/marigold2.jpg' %}" alt="Marigold & Co. candles">
+            </div>
+            <div class="hero-badge">
+              <div class="badge-icon"><i class="bi bi-droplet"></i> </div>
+              <div>
+                <div class="badge-text">100% Natural Wax</div>
+                <div class="badge-sub">Soy & coconut blend</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES STRIP ══ -->
+  <section class="bg-cream-dark py-5">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="feature-icon mx-auto">
+            <i class="bi bi-flower1"></i>
+          </div>
+          <h6 class="fw-bold mb-1">Natural Ingredients</h6>
+          <p class="text-muted-warm small mb-0">Soy & coconut wax, no synthetics</p>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="feature-icon mx-auto">
+            <i class="bi bi-hand-index-thumb"></i>
+          </div>
+          <h6 class="fw-bold mb-1">Handpoured</h6>
+          <p class="text-muted-warm small mb-0">Every candle made by hand</p>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="feature-icon mx-auto">
+            <i class="bi bi-box-seam"></i>
+          </div>
+          <h6 class="fw-bold mb-1">Eco Packaging</h6>
+          <p class="text-muted-warm small mb-0">Recycled & compostable materials</p>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <div class="feature-icon mx-auto">
+            <i class="bi bi-envelope-heart"></i>
+          </div>
+          <h6 class="fw-bold mb-1">Custom Orders</h6>
+          <p class="text-muted-warm small mb-0">Bespoke gifts & wedding favours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURED PRODUCTS ══ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">Our Products</span>
+        <h2 class="display-6 fw-bold">Bestsellers</h2>
+        <p class="text-muted-warm">A few of our most-loved pieces — shop the full collection on Etsy.</p>
+      </div>
+      <div class="row g-4">
+        {% for product in featured %}
+        <div class="col-12 col-sm-6 col-lg-4 scroll-fade">
+          <div class="card-marigold">
+            <img
+              src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/marigold1.jpg' %}{% endif %}"
+              alt="{{ product.name }}"
+              style="width:100%; height:220px; object-fit:cover;">
+            <div class="card-body">
+              <span class="badge mb-2 badge-{{ product.category }}" style="font-size:10px;">
+                {{ product.get_category_display }}
+              </span>
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text mb-3">{{ product.description }}</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="card-price">${{ product.price }}</span>
+                <a href="{{ product.etsy_url }}" target="_blank" class="btn btn-outline-amber btn-sm">
+                  View <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted-warm">No featured products yet — check back soon!</p>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-5">
+        <a href="{% url 'shop' %}" class="btn btn-brown">
+          View All Products <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT SNIPPET ══ -->
+  <section class="section-pad bg-cream-dark">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 scroll-fade">
+          <div class="about-img-placeholder" style="height:380px; border-radius: 20px 20px 80px 20px;">
+            <img src="{% static 'img/marigold6.jpg' %}" alt="Sandra — founder of Marigold & Co." class="about-img">
+          </div>
+        </div>
+        <div class="col-lg-7 scroll-fade">
+          <span class="section-label">Our Story</span>
+          <h2 class="display-6 fw-bold mb-4">Started in a kitchen, made from the heart</h2>
+          <p class="text-muted-warm mb-3">
+            Hi, I'm Sandra. I started Marigold & Co. three years ago at my kitchen table in Austin, mixing waxes and testing scents until I found something that felt truly <em>mine</em>.
+          </p>
+          <p class="text-muted-warm mb-4">
+            Every candle is still made by my hands — in small batches, with natural ingredients, and with genuine care for the person lighting it.
+          </p>
+          <a href="{% url 'about' %}" class="btn btn-amber">
+            Meet Sandra <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHY US STRIP ══ -->
+  <section class="section-pad-sm">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3 scroll-fade">
+          <i class="bi bi-truck mb-3 d-block" style="font-size:1.8rem; color:var(--amber-dark);"></i>
+          <div class="fw-semibold small">Free US Shipping</div>
+          <div class="text-muted-warm" style="font-size:12px;">On orders over $50</div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <i class="bi bi-shield-check mb-3 d-block" style="font-size:1.8rem; color:var(--amber-dark);"></i>
+          <div class="fw-semibold small">Safe Checkout</div>
+          <div class="text-muted-warm" style="font-size:12px;">Via trusted Etsy platform</div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <i class="bi bi-arrow-repeat mb-3 d-block" style="font-size:1.8rem; color:var(--amber-dark);"></i>
+          <div class="fw-semibold small">Easy Returns</div>
+          <div class="text-muted-warm" style="font-size:12px;">7-day quality guarantee</div>
+        </div>
+        <div class="col-6 col-md-3 scroll-fade">
+          <i class="bi bi-chat-heart mb-3 d-block" style="font-size:1.8rem; color:var(--amber-dark);"></i>
+          <div class="fw-semibold small">Personal Support</div>
+          <div class="text-muted-warm" style="font-size:12px;">Sandra replies to every message</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section class="section-pad bg-cream-dark">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">Reviews</span>
+        <h2 class="display-6 fw-bold">What customers say</h2>
+      </div>
+      <div class="row g-4">
+        {% for review in reviews %}
+        <div class="col-12 col-sm-6 col-lg-4 scroll-fade">
+          <div class="testimonial-card h-100">
+            <p>{{ review.content }}</p>
+            <div class="testimonial-author">{{ review.author }}</div>
+            <div class="testimonial-loc d-flex align-items-center gap-2 mt-1">
+              <span>{{ review.location }}</span>
+              <span style="color:var(--amber-dark); letter-spacing:1px;">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= review.rating %}
+                    <i class="bi bi-star-fill" style="font-size:11px;"></i>
+                  {% else %}
+                    <i class="bi bi-star" style="font-size:11px; color:var(--brown-light);"></i>
+                  {% endif %}
+                {% endfor %}
+              </span>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted-warm">No reviews yet.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NEWSLETTER ══ -->
+  <section class="newsletter-band">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-6">
+          <i class="bi bi-envelope-open-heart mb-3 d-block" style="font-size:2rem; color:var(--amber);"></i>
+          <span class="section-label" style="color:var(--amber);">Stay in touch</span>
+          <h2 class="mb-3">Join the Marigold circle</h2>
+          <p class="mb-4">New scents, seasonal collections, and behind-the-scenes updates. No spam, ever.</p>
+            {% include 'partials/messages.html' %} 
+          <form class="newsletter-form d-flex flex-column flex-sm-row gap-2" action="{% url 'newsletter' %}" method="POST">
+            {% csrf_token %}
+            <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+            <button type="submit" class="btn btn-amber flex-shrink-0">
+              Subscribe <i class="bi bi-send ms-1"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

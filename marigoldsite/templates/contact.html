@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+  <!-- ══ PAGE HERO ══ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="col-lg-6 fade-up">
+        <span class="section-label">Let's Talk</span>
+        <h1 class="fw-bold mb-3">Get in touch</h1>
+        <p class="text-muted-warm" style="font-size:16px;">Whether it's a custom order, a wholesale enquiry, or just a hello — Sandra reads every message personally.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT SECTION ══ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- Form -->
+        <div class="col-lg-7 fade-up">
+          <div class="contact-form-wrap">
+            <h4 class="fw-bold mb-1">Send a message</h4>
+            <p class="text-muted-warm small mb-4">I usually reply within 1–2 business days.</p>
+            {% include 'partials/messages.html' %} 
+            <form id="contactForm" action="{% url 'contact' %}" method="POST" novalidate>
+              {% csrf_token %}
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  {{ form.first_name }}
+                  {% if form.first_name.errors %}
+                    <div class="text-danger small mt-1">{{ form.first_name.errors.0 }}</div>
+                  {% endif %}
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  {{ form.last_name }}
+                  {% if form.last_name.errors %}
+                    <div class="text-danger small mt-1">{{ form.last_name.errors.0 }}</div>
+                  {% endif %}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Email Address</label>
+                  {{ form.email }}
+                  {% if form.email.errors %}
+                    <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                  {% endif %}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Subject</label>
+                  {{ form.subject }}
+                  {% if form.subject.errors %}
+                    <div class="text-danger small mt-1">{{ form.subject.errors.0 }}</div>
+                  {% endif %}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  {{ form.message }}
+                  {% if form.message.errors %}
+                    <div class="text-danger small mt-1">{{ form.message.errors.0 }}</div>
+                  {% endif %}
+                </div>
+                <div class="col-12 pt-1">
+                  <button type="submit" class="btn btn-amber w-100">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="col-lg-5 fade-up delay-2">
+          <h4 class="fw-bold mb-4">Other ways to reach me</h4>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📧</div>
+            <div>
+              <div class="fw-semibold mb-1">Email</div>
+              <a href="mailto:sandra@marigoldandco.com">sandra@marigoldandco.com</a>
+              <div class="text-muted-warm small">Best for detailed enquiries</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📱</div>
+            <div>
+              <div class="fw-semibold mb-1">Instagram</div>
+              <a href="{{ instagram_url }}" target="_blank">@marigoldandco</a>
+              <div class="text-muted-warm small">DMs welcome for quick questions</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🛍️</div>
+            <div>
+              <div class="fw-semibold mb-1">Etsy Shop</div>
+              <a href="{{ etsy_url }}" target="_blank">marigoldandco.etsy.com</a>
+              <div class="text-muted-warm small">For order questions, use Etsy messages</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <div class="fw-semibold mb-1">Based in</div>
+              <div>Austin, Texas</div>
+              <div class="text-muted-warm small">Online only — no retail walk-ins</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🕐</div>
+            <div>
+              <div class="fw-semibold mb-1">Response Time</div>
+              <div>1–2 business days</div>
+              <div class="text-muted-warm small">Mon–Fri, 9am–5pm CST</div>
+            </div>
+          </div>
+
+          <!-- Custom order note -->
+          <div class="mt-4 p-4 rounded-3" style="background:var(--cream-dark);border:1.5px solid var(--amber-light);">
+            <h6 class="fw-bold mb-2">🕯️ Custom Orders</h6>
+            <p class="text-muted-warm small mb-0">
+              I love doing custom work — wedding favours, corporate gifts, personalised labels, and bespoke scent blending. Lead time is usually 2–3 weeks. Min. order of 12 units for custom batches.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock %}

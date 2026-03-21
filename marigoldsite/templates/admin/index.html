@@ -1,0 +1,205 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+<div class="mg-page">
+
+  <!-- Page Header -->
+  <div class="mg-page-header">
+    <div class="mg-page-header-left">
+      <h1>Dashboard</h1>
+      <p>Overview of your website activity</p>
+    </div>
+    <div class="mg-header-date">
+      <i class="fas fa-calendar-alt" style="margin-right:5px; color:#d1d5db;"></i>
+      {% now "N j, Y" %}
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="mg-stat-grid">
+
+    <a href="/admin/marigoldApp/product/" class="mg-stat-card">
+      <div class="mg-stat-top">
+        <div class="mg-stat-label">Products</div>
+        <div class="mg-stat-icon mg-icon-orange"><i class="fas fa-box-open"></i></div>
+      </div>
+      <div class="mg-stat-number">{{ product_count }}</div>
+      <div class="mg-stat-sub">{{ featured_count }} featured</div>
+    </a>
+
+    <a href="/admin/marigoldApp/contactmessage/?is_read__exact=0" class="mg-stat-card">
+      <div class="mg-stat-top">
+        <div class="mg-stat-label">Unread</div>
+        <div class="mg-stat-icon mg-icon-blue"><i class="fas fa-envelope"></i></div>
+      </div>
+      <div class="mg-stat-number">{{ unread_count }}</div>
+      <div class="mg-stat-sub">{{ message_count }} total</div>
+    </a>
+
+    <a href="/admin/marigoldApp/review/?is_approved__exact=0" class="mg-stat-card">
+      <div class="mg-stat-top">
+        <div class="mg-stat-label">Reviews</div>
+        <div class="mg-stat-icon mg-icon-green"><i class="fas fa-star"></i></div>
+      </div>
+      <div class="mg-stat-number">{{ pending_reviews }}</div>
+      <div class="mg-stat-sub">{{ review_count }} total</div>
+    </a>
+
+    <a href="/admin/marigoldApp/faq/" class="mg-stat-card">
+      <div class="mg-stat-top">
+        <div class="mg-stat-label">FAQs</div>
+        <div class="mg-stat-icon mg-icon-violet"><i class="fas fa-question-circle"></i></div>
+      </div>
+      <div class="mg-stat-number">{{ faq_count }}</div>
+      <div class="mg-stat-sub">Active &amp; published</div>
+    </a>
+
+  </div>
+
+  <!-- Main Grid -->
+  <div class="mg-main-grid">
+
+    <!-- Left: Recent Messages -->
+    <div>
+      <div class="mg-section-label">Recent Messages</div>
+      <div class="mg-card">
+        <div class="mg-card-header">
+          <div class="mg-card-title">
+            <i class="fas fa-inbox"></i> Inbox
+          </div>
+          <a href="/admin/marigoldApp/contactmessage/" class="mg-card-action">
+            View all <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+          </a>
+        </div>
+
+        {% if recent_messages %}
+          {% for msg in recent_messages %}
+          <div class="mg-msg-item">
+            {% if not msg.is_read %}<div class="mg-dot"></div>{% endif %}
+            <div class="mg-avatar">{{ msg.first_name|first }}{{ msg.last_name|first }}</div>
+            <div class="mg-msg-body">
+              <div class="mg-msg-name">
+                {{ msg.first_name }} {{ msg.last_name }}
+                {% if not msg.is_read %}<span class="mg-badge mg-badge-new">New</span>{% endif %}
+              </div>
+              <div class="mg-msg-subject">{{ msg.get_subject_display }}</div>
+              <div class="mg-msg-preview">{{ msg.message }}</div>
+            </div>
+            <div class="mg-msg-time">{{ msg.sent_at|timesince }} ago</div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="mg-empty">
+            <i class="fas fa-inbox"></i>
+            <div class="mg-empty-title">No messages yet</div>
+            <div>New enquiries will appear here</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div>
+      <div class="mg-right-cols">
+
+        <!-- Quick Actions -->
+        <div>
+          <div class="mg-section-label">Quick Actions</div>
+          <div class="mg-card">
+            <a href="/admin/marigoldApp/product/add/" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-plus"></i></div>
+              <span class="mg-action-label">Add Product</span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/auth/user/add/" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-user-plus"></i></div>
+              <span class="mg-action-label">Add User</span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/marigoldApp/review/?is_approved__exact=0" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-star"></i></div>
+              <span class="mg-action-label">
+                Approve Reviews
+                {% if pending_reviews > 0 %}
+                  <span class="mg-badge mg-badge-pending" style="margin-left:4px;">{{ pending_reviews }}</span>
+                {% endif %}
+              </span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/marigoldApp/contactmessage/?is_read__exact=0" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-envelope"></i></div>
+              <span class="mg-action-label">
+                Unread Messages
+                {% if unread_count > 0 %}
+                  <span class="mg-badge mg-badge-new" style="margin-left:4px;">{{ unread_count }}</span>
+                {% endif %}
+              </span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/admin/marigoldApp/faq/" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-question-circle"></i></div>
+              <span class="mg-action-label">Manage FAQs</span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+            <a href="/" target="_blank" class="mg-action-item">
+              <div class="mg-action-icon"><i class="fas fa-external-link-alt"></i></div>
+              <span class="mg-action-label">View Live Site</span>
+              <span class="mg-action-arrow"><i class="fas fa-chevron-right"></i></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Awaiting Approval -->
+        <div>
+          <div class="mg-section-label">Awaiting Approval</div>
+          <div class="mg-card">
+            <div class="mg-card-header">
+              <div class="mg-card-title">
+                <i class="fas fa-star"></i> Reviews
+              </div>
+              <a href="/admin/marigoldApp/review/" class="mg-card-action">
+                All <i class="fas fa-arrow-right" style="font-size:10px;"></i>
+              </a>
+            </div>
+
+            {% if unapproved_reviews %}
+              {% for review in unapproved_reviews %}
+              <div class="mg-review-item">
+                <div class="mg-review-header">
+                  <div class="mg-review-author">
+                    {{ review.author }}
+                    <span class="mg-badge mg-badge-pending">Pending</span>
+                  </div>
+                  <div class="mg-review-stars">
+                    {% for i in "12345" %}
+                      {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+                {% if review.location %}
+                  <div class="mg-review-location">
+                    <i class="fas fa-map-marker-alt" style="font-size:9px;"></i>
+                    {{ review.location }}
+                  </div>
+                {% endif %}
+                <div class="mg-review-text">"{{ review.content|truncatechars:90 }}"</div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="mg-empty">
+                <i class="fas fa-check-circle"></i>
+                <div class="mg-empty-title">All caught up</div>
+                <div>No reviews pending</div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+      </div><!-- /mg-right-cols -->
+    </div><!-- /right column -->
+
+  </div><!-- /mg-main-grid -->
+</div><!-- /mg-page -->
+{% endblock %}
