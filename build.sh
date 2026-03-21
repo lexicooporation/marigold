@@ -3,6 +3,9 @@ set -e
 
 pip install -r requirements.txt
 cd marigoldsite
-python manage.py collectstatic --no-input
+echo "Current directory: $(pwd)"
+echo "Static folder contents:"
+ls static/
+python manage.py collectstatic --no-input --clear
 python manage.py migrate
 python manage.py createsuperuser --no-input 2>/dev/null || echo "Superuser already exists, skipping."
