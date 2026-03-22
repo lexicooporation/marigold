@@ -225,3 +225,15 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_fixed":   True,
     "sidebar": "sidebar-light-primary",
 }
+
+
+# ── Security ──────────────────────────────────────────────────
+SECURE_SSL_REDIRECT          = not DEBUG  # redirect HTTP to HTTPS in production
+SECURE_HSTS_SECONDS          = 31536000   # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD          = True
+SESSION_COOKIE_SECURE        = not DEBUG  # HTTPS-only session cookie
+CSRF_COOKIE_SECURE           = not DEBUG  # HTTPS-only CSRF cookie
+SECURE_BROWSER_XSS_FILTER    = True
+SECURE_CONTENT_TYPE_NOSNIFF  = True
+X_FRAME_OPTIONS              = 'DENY'
