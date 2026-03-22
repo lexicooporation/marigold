@@ -30,7 +30,7 @@
 /* ── Base ── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth;}
+html { scroll-behavior: smooth; overflow-x: clip;}
 
 body {
   font-family: var(--font-body);
@@ -39,7 +39,7 @@ body {
   font-size: 15px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 /* ── Alert / Message themes ── */
@@ -285,7 +285,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-badge {
   position: absolute;
-  bottom: 30px; left: -20px;
+  bottom: 30px; left: 0;
   background: var(--white);
   border-radius: 14px;
   padding: 14px 20px;
