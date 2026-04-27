@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG','False')=='True'
 
 ALLOWED_HOSTS = ['marigold-8xdf.onrender.com', 'localhost', '127.0.0.1']
 
@@ -91,11 +91,11 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-    default=os.getenv('DATABASE_URL'),
-    conn_max_age=600,
-    ssl_require=True,  
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
     )
 }
+
 
 
 # Password validation
@@ -229,7 +229,7 @@ JAZZMIN_UI_TWEAKS = {
 
 
 # ── Security ──────────────────────────────────────────────────
-SECURE_SSL_REDIRECT          = not DEBUG  # redirect HTTP to HTTPS in production
+SECURE_SSL_REDIRECT          = False  # redirect HTTP to HTTPS in production
 SECURE_HSTS_SECONDS          = 31536000   # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD          = True
